@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "异环资源规划"
+  short_description: "按异环固定规则和版本数据计算资源缺口、活动路线、礼包优先级。"
+  default_prompt: "使用异环资源规划 skill，根据我的当前库存和版本目标生成资源分析。"
