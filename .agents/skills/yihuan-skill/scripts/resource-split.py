@@ -244,11 +244,14 @@ def should_include(tier: str, item_tier: str) -> bool:
         return True
     if tier == '零氪':
         return False
-    if tier in ('小月卡党', '大小月卡党') and '小月卡' in item_tier:
-        return True
-    if tier == '大小月卡党' and ('仅大小月卡党' in item_tier or '大小月卡' in item_tier):
-        return True
-    if tier == '小月卡党' and item_tier == '小月卡党/大小月卡党':
+    # 小月卡党/大小月卡党 → 两种月卡党都包括
+    if item_tier == '小月卡党/大小月卡党':
+        return tier in ('小月卡党', '大小月卡党')
+    # 仅大小月卡党 → 只有大小月卡党才有
+    if item_tier == '仅大小月卡党':
+        return tier == '大小月卡党'
+    # 其他含"小月卡"的档位
+    if '小月卡' in item_tier and tier in ('小月卡党', '大小月卡党'):
         return True
     return False
 
